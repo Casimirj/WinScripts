@@ -84,22 +84,23 @@ try:
             "role": "user",
             "content": message
         }],
-        "model": "gpt3",
-        "max_tokens": 3700,
-        "temperature": 0.7,
-        "top_p": 1,
-        "stream": False,
-        "presence_penalty": 0,
+        "model": model,
+        "max_tokens": max_tokens,
+        "temperature": temperature,
+        "top_p": top_p,
+        "stream": stream,
+        "presence_penalty": frequency_penalty,
     }
 
     messages = [{
         "role": "user",
         "content": message
     }]
+
     headers = {'Content-Type': 'application/json'}
     response = requests.post(uri, headers=headers, json=data)
     content = json.loads(bytes.decode(response.content))
-    print(content)
+    # print(content)
 
     if content.get("error") is not None:
         error = content.get("error")

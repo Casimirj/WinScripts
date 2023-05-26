@@ -24,7 +24,10 @@ function Format-Json([Parameter(Mandatory, ValueFromPipeline)][String] $json) {
 
 
 # Escape double quotes in the input string
-$escapedInputString = $inputString -replace '"', '\"'
+
+$escapedInputString = $inputString -replace '"', '\"' -replace ' ', '` '
+# # $escapedInputString2 = $escapedInputString
+# Write-Output $escapedInputString
 
 
 # Execute the Python script and capture the output

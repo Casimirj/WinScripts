@@ -4,8 +4,9 @@ import pygments
 from pygments.lexers import JsonLexer
 from pygments.formatters import TerminalFormatter
 
-input_string = sys.argv[1]
+input_string = " ".join(sys.argv[1:])
 
+input_string = input_string.replace("`", "")
 # print(input_string)
 
 # Parse the input string as JSON
