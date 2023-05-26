@@ -1,0 +1,6 @@
+Anaconda/**
+**venv**
+.idea
+**.kate-swp
+__pycache__
+gsudo/**
