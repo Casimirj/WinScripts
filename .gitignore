@@ -4,3 +4,4 @@ Anaconda/**
 **.kate-swp
 __pycache__
 gsudo/**
+create_token_auth.ps1

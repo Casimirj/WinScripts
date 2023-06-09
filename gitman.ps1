@@ -274,6 +274,9 @@ Switch ($action){
 			foreach ($file in $untrackedFiles) {
 				Write-Host "$file" -ForegroundColor "Green"
 				$response = Read-Host "Do you want to add the file to the commit? (Y/N)"
+				if ($response -eq 'Q' -or $response -eq 'q') {
+					exit 0
+				}
 
 				if ($response -eq 'Y' -or $response -eq 'y') {
 					git add $file
