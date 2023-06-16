@@ -10,13 +10,20 @@ import re
 
 
 model="gpt3"
-max_tokens=4700
+max_tokens=10000
 temperature=0.7
 top_p=1
 frequency_penalty=0
 presence_penalty=0
 stream=False
 
+
+
+api_key = os.environ.get('CHEESY_GPT_KEY')
+
+if api_key is None:
+    print("Set your API Key in the env variable: CHEESY_GPT_KEY, Ask James pls if you need halp")
+    exit(1)
 
 
 
@@ -118,7 +125,8 @@ def make_api_call(messages):
     # print(data)
     try:
         # print("Here we go!")
-        headers = {"Content-Type": "application/json"}
+        headers = {"Content-Type": "application/json",
+                   "Authorization": api_key}
         response = requests.post(uri, headers=headers, json=data)
         # print(f"Response {response}")
         content = json.loads(bytes.decode(response.content))
@@ -179,8 +187,9 @@ try:
         print_output(output)
 
 
+        choice = input(f"Send another Query? y/n: ").lower()
 
-        if input(f"Send another Query? y/n: ").lower() in ["y", "yes","yeppers"]:
+        if choice in ["y", "yes","yeppers"]:
             messages_to_send.append({
                 "role": "assistant",
                 "text": output
@@ -189,7 +198,8 @@ try:
                 "role": "user",
                 "text": input("Enter another Query: ")
             })
-
+        elif choice in ["q", "quit"]:
+            exit(0)
         else:
             extract_code_to_file(output)
             break
