@@ -258,7 +258,9 @@ Switch ($action){
 		git stash --keep-index
 		# git stash save
 	}
-
+	stash-list {
+		git stash list | grep "$(git rev-parse --abbrev-ref HEAD)"
+	}
 	add {
 		git add -p
 	}
@@ -272,6 +274,7 @@ Switch ($action){
 
 		if ($untrackedFiles) {
 			foreach ($file in $untrackedFiles) {
+			 if (!$file.Contains(".json")) {
 				Write-Host "$file" -ForegroundColor "Green"
 				$response = Read-Host "Do you want to add the file to the commit? (Y/N)"
 				if ($response -eq 'Q' -or $response -eq 'q') {
@@ -281,6 +284,7 @@ Switch ($action){
 				if ($response -eq 'Y' -or $response -eq 'y') {
 					git add $file
 				}
+			}
 			}
 		} else {
 			Write-Host "No untracked files found."

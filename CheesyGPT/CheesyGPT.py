@@ -9,8 +9,9 @@ import sys
 import re
 
 
-model="gpt3"
-max_tokens=10000
+# model="gpt3"
+model = "gpt-3.5-turbo-16k"
+max_tokens=8000
 temperature=0.7
 top_p=1
 frequency_penalty=0
@@ -20,6 +21,8 @@ stream=False
 
 
 api_key = os.environ.get('CHEESY_GPT_KEY')
+api_key = "Bearer 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"
+
 
 if api_key is None:
     print("Set your API Key in the env variable: CHEESY_GPT_KEY, Ask James pls if you need halp")
@@ -106,7 +109,9 @@ def extract_code_to_file(output):
 
 
 def make_api_call(messages):
-    uri = "https://free.churchless.tech/v1/chat/completions"
+    # uri = "https://free.churchless.tech/v1/chat/completions"
+    uri = "https://api.openai.com/v1/chat/completions"
+
     data = {
         "messages": [],
         "model": model,
@@ -139,6 +144,7 @@ def make_api_call(messages):
                 print("Youre doing that too much! Wait a second holmes")
             elif error == "error sending request":
                 print("Error sending request")
+                print(content)
             exit(1)
         return content
     except (ConnectionError, TimeoutError):
