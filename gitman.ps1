@@ -291,7 +291,6 @@ Switch ($action){
 		}
 	}
 	safe-push {
-
 		$branch = $(git rev-parse --abbrev-ref HEAD)
 
 		if($branch -eq "develop"){
@@ -301,7 +300,16 @@ Switch ($action){
 			git push
 		}
 	}
+	push {
+		$branch = $(git rev-parse --abbrev-ref HEAD)
 
+		if($branch -eq "develop"){
+			Write-host "Not so fast buckaroo! Youre on the develop branch"  -ForegroundColor "Red"
+		}
+		else{
+			git push
+		}
+	}
 	default {
 		Write-host "GitMan: Defender of Repositories, Keeper of the Sacred Code Flow" -ForegroundColor "$accent_color"
 		echo ""

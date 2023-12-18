@@ -96,6 +96,7 @@ def extract_code_to_file(output):
             if code[0]:
                 if input(f"Found {code[1].capitalize()} Code! Save it to a file? y/n: ").lower() in ["y", "yes","yeppers"]:
                     filename = input(f"Enter a filename: (default: output.{code[2]}) ")
+                    filename = filename.replace("\t", "")
                     filename = filename if filename != "" else f"output.{code[2]}"
 
                     # adds file extension if not specified
