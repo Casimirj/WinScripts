@@ -9,9 +9,8 @@ import sys
 import re
 
 
-# model="gpt3"
-model = "gpt-3.5-turbo-16k"
-max_tokens=8000
+model = "gpt-3.5-turbo"
+max_tokens=1000
 temperature=0.7
 top_p=1
 frequency_penalty=0
@@ -21,24 +20,22 @@ stream=False
 
 
 api_key = os.environ.get('CHEESY_GPT_KEY')
-api_key = "Bearer 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"
-
 
 if api_key is None:
     print("Set your API Key in the env variable: CHEESY_GPT_KEY, Ask James pls if you need halp")
     exit(1)
 
-
+model = sys.argv[1]
 
 message = ""
 try:
-    message = sys.argv[1]
+    message = sys.argv[2]
+
 except IndexError:
     lol = "lol"
 finally:
-    if message == "":
+    if message == "" or message == "[0]":
         message = input("Enter a Query: ")
-
 
 
 

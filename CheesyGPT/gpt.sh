@@ -10,7 +10,7 @@ export PYTHONPATH="$project_path"
 
 
  if [ -w . ]; then
-     python3 "$project_path/CheesyGPT.py" "$1"
+     python3 "$project_path/CheesyGPT.py" "gpt-4-turbo" "$1"
  else
-     sudo python3 "$project_path/CheesyGPT.py" "$1"
+     sudo python3 "$project_path/CheesyGPT.py" "gpt-4-turbo" "$1"
  fi

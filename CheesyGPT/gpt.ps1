@@ -9,7 +9,7 @@ cd $venvPath
 cd $current_dir
 
 try {
-    python $projectPath\CheesyGPT.py $args[0]
+    python $projectPath\CheesyGPT.py "gpt-3.5-turbo" "$args[0]"
 }
 catch {
 }
